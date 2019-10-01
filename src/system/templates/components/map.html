@@ -1,0 +1,53 @@
+<div class="wb-map" #map>
+  <div class="mb-5">
+    <h3>Wastebin Monitoring and Tracking System</h3>
+    <hr>
+  </div>
+
+  <div class="map-types mb-2">
+    <button class="btn map-type-btn mr-2" [class.active]="mapTypeId == 'roadmap'" type="button" (click)="mapTypeId = 'roadmap'">Roadmap</button>
+    <button class="btn map-type-btn mr-2" [class.active]="mapTypeId == 'hybrid'" type="button" (click)="mapTypeId = 'hybrid'">Hybrid</button>
+    <button class="btn map-type-btn mr-2" [class.active]="mapTypeId == 'satellite'" type="button" (click)="mapTypeId = 'satellite'">Satelite</button>
+    <button class="btn map-type-btn mr-2" [class.active]="mapTypeId == 'terrain'" type="button" (click)="mapTypeId = 'terrain'">Terrain</button>
+
+  </div>
+
+  <div class="map-container">
+    <agm-map [latitude]="lat" [longitude]="lng" [mapTypeId]="mapTypeId">
+      <agm-marker [latitude]="lat" [longitude]="lng"
+                  [iconUrl]="percent > 80 ?
+                            {
+                              url: './assets/map-icons/full2.svg',
+                              scaledSize: {
+                                  width: 30,
+                                  height: 30
+                              }
+                          } :
+                          {
+                              url: './assets/map-icons/active2.svg',
+                              scaledSize: {
+                                  width: 30,
+                                  height: 30
+                              }
+                          }"
+                  (mouseOver)="window.open()">
+        <agm-info-window #window>
+          <div class="extra-info p-2" style="width: 350px;">
+            <div>
+              <h6 class="text-info d-flex">Wastebin #1 Information</h6>
+            </div>
+            <div class="progress mb-3" style="height: 25px;">
+              <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar"
+                   [style.width]="percent+'%'" [ngClass]="barClass"
+                   aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h6><span>Longitude</span> {{marker.longitude}}</h6>
+            <h6><span>Latitude</span> {{marker.latitude}}</h6>
+            <h6><span>Percentage</span> {{percent}}%</h6>
+          </div>
+
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
+</div>

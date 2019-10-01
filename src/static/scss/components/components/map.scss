@@ -1,0 +1,38 @@
+.wb-map {
+  .map-types  {
+    .map-type-btn {
+      padding: 2px 4px;
+      border-radius: 0;
+      background-color: #5a8080;;
+      color: white;
+      font-size: 65%;
+      &:focus {
+        box-shadow: none;
+      }
+    }
+    .active {
+      background-color: #315252;
+    }
+  }
+  .map-container  {
+    border: solid 1.5px #315252;
+    agm-map {
+      width: 100%;
+      height: 75vh;
+      .extra-info {
+        .progress {
+          border-radius: 0;
+        }
+        h6 {
+          font-size: 13px;
+          margin-bottom: 15px;
+          span {
+            color: white;
+            background-color: #5a8080;
+            padding: 3px;
+          }
+        }
+      }
+    }
+  }
+}
